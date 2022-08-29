@@ -1,0 +1,16 @@
+mpd
+mpc
+polybar
+picom-animations-git
+pywal-git
+polybar
+brave-bin
+alacritty
+ranger
+playerctl
+rofi
+rofi-pass
+flameshot
+alsa-utils
+xcolor
+xclip
