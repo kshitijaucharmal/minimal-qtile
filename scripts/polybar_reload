@@ -1,0 +1,4 @@
+killall polybar
+
+polybar top &
+polybar bottom &

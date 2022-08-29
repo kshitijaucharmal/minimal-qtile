@@ -1,0 +1,1 @@
+man -k . | dmenu -l 5 | awk '{print }' | xargs -r man -Tpdf > /tmp/doc.pdf; evince /tmp/doc.pdf && rm /tmp/doc.pdf

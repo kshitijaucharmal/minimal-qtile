@@ -1,0 +1,6 @@
+#!/bin/bash
+filename=`echo $@ | cut -d' ' -f3-`
+echo $filename > /tmp/test.txt
+
+alacritty -e nvr --servername unity $@
+

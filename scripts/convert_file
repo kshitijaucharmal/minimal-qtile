@@ -1,0 +1,10 @@
+#!/bin/sh
+
+fullfile="${1##*/}"
+filename="${fullfile%.*}"
+
+formats=`echo "gif png jpg jpeg mp3 mp4 webm mkv" | tr ' ' '\n'`
+e_to=`printf "$formats" | dmenu`
+
+ffmpeg -i $1 ~/.modified/$filename.$e_to
+echo "Save to ~/.modified"
