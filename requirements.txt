@@ -14,3 +14,4 @@ flameshot
 alsa-utils
 xcolor
 xclip
+spotify
