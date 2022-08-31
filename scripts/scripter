@@ -2,4 +2,4 @@
 
 ## Just opens my other scripts
 
-ls /home/kshitij/.scripts | dmenu -i -l 10 | xargs -I {} bash /home/kshitij/.scripts/{}
+ls /home/kshitij/.scripts | dmenu -sb "#a93542" -i -l 10 | xargs -I {} bash /home/kshitij/.scripts/{}

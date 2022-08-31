@@ -10,6 +10,8 @@ fi
 filename=`echo $1 | cut -d . -f1`
 extension=`echo $1 | cut -d . -f2`
 
+[ ${#extension} = 0 ] && ./$1 && exit
+
 case $extension in
     py)      $(which python) . ;;
     lua)     $(which lua) $1 ;;
@@ -18,4 +20,5 @@ case $extension in
     cpp | h) $(which g++) -o $filename -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl $1 && ./$filename ;;
     java)    $(which javac) $1 && $(which java) $filename ;;
     js)      $(which node) $1 ;;
+    sh)      $(which bash) $1 ;;
 esac

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+options=(
+    "Youtube-https://www.youtube.com/results?search_query="
+    "Google-https://www.google.com/search?q="
+    "OvaGames-https://www.ovagames.com/?s="
+    "BraveSearch-https://search.brave.com/search?q="
+)
+
+services=`printf '%s\n' ${options[@]} | cut -d- -f1`
+urls=`printf '%s\n' ${options[@]} | cut -d- -f2`
+
+engine=`echo $urls | tr ' ' '\n' | dmenu -l 10 -sb "#a93542" -p "Search Engine:"`
+query=`echo | dmenu -sb "#a93542" -p "Search Query" | tr ' ' '+'`
+
+## exit if escaped
+[ ${#engine} = 0 ] && exit
+[ ${#query} = 0 ] && exit
+
+brave $engine$query & disown

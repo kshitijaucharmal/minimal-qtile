@@ -1,0 +1,5 @@
+#!/bin/sh
+# To be run from the terminal
+
+file=`fd . $HOME | fzf`
+[ ${#file} != 0 ] && nvim $file

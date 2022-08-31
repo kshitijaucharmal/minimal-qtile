@@ -1,15 +1,15 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
 ## this script uses cht.sh to search for queries
 
-languages=`echo "python java javascript c csharp rust lua processing" | tr ' ' '\n'`
-core_utils=`echo "xargs find mv sed awk fzf" | tr ' ' '\n'`
+languages=`echo "python java javascript c csharp rust lua" | tr ' ' '\n'`
+core_utils=`echo "xargs find mv sed awk fzf man grep" | tr ' ' '\n'`
 
-selected=`printf "$languages\n$core_utils" | dmenu`
-alacritty -e read -p "query: " query
+selected=`printf "$languages\n$core_utils" | fzf`
+read -p "Query: " query
 
 if printf "$languages" | grep -qs $selected; then
-    alacritty -e bash -c "curl cht.sh/$selected/`echo $query | tr ' ' '+'` & read"
+    curl cht.sh/$selected/`echo $query | tr ' ' '+'` | less
 else
-    alacritty -e bash -c "curl cht.sh/$selected~$query & while [ : ]; do sleep 1; done & read"
+    curl cht.sh/$selected~$query | less
 fi
