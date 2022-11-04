@@ -14,10 +14,12 @@ extension=`echo $1 | cut -d . -f2`
 
 case $extension in
     py)      $(which python) . ;;
+    rs)      $(which cargo) run ;;
     lua)     $(which lua) $1 ;;
     cs)      $(which csc) $1 ;;
     pde)     $(which processing-java) --sketch=../$(pwd | rev | cut -d'/' -f1 | rev) --run ;;
-    cpp | h) $(which g++) -o $filename -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl $1 && ./$filename ;;
+    # cpp | h) $(which g++) -o $filename -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl $1 && ./$filename ;;
+    cpp | h) $(which make) ;;
     java)    $(which javac) $1 && $(which java) $filename ;;
     js)      $(which node) $1 ;;
     sh)      $(which bash) $1 ;;

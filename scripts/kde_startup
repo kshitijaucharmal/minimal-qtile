@@ -1,0 +1,6 @@
+wal -R
+xset r rate 230 100
+# setxkbmap -option caps:swapescape
+
+setxkbmap -option caps:ctrl_modifier
+xcape -e 'Caps_Lock=Escape'

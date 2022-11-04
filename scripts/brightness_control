@@ -1,0 +1,11 @@
+#!/bin/sh
+
+WHAT=${1}
+VAL=${2}
+
+CURRENT_VALUE=`xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | head -n1`
+
+[ $WHAT = "+" ] && NEWVAL=$(( VAL + CURRENT_VALUE ));
+[ $WHAT = "-" ] && NEWVAL=$(( VAL - CURRENT_VALUE ));
+
+echo $NEWVAL

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+filename=/tmp/tesseract-flame.png
+
+flameshot gui -p $filename
+tesseract --oem 1 $filename stdout | xclip -sel c
+rm -f $filename
