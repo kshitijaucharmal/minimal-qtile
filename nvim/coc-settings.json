@@ -1,0 +1,13 @@
+{
+    "suggest.enablePreselect": false,
+    "suggest.noselect": false,
+    "coc.source.OmniSharp.enable" : true,
+    "coc.source.OmniSharp.triggerCharacters": ".",
+    "languageserver": {
+        "godot": {
+            "host": "127.0.0.1",
+            "filetypes": ["gdscript"],
+            "port": 6008
+        }
+    }
+}
