@@ -80,3 +80,4 @@ youtube-dl
 ytfzf
 zip
 zscroll-git
+picom-pijulius-git
