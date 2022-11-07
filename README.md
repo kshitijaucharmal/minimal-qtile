@@ -6,8 +6,10 @@ Compatible with all arch derivatives, aur helper 'yay' required
 
 ## Installation
 Just run install.sh
+
 <code> 
-chmod +x installer.sh<br>
+chmod +x installer.sh
+
 ./installer.sh
 </code>
 
