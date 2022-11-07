@@ -11,7 +11,7 @@ xcape -e 'Caps_Lock=Escape'
 polybar top &
 syncthing &
 polybar bottom &
-mpd
+#mpd
 
 # Applications, Not to be taken Seriously
 brave &

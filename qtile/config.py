@@ -9,8 +9,9 @@ from libqtile import qtile
 
 mod = "mod4"
 browser = "brave"
-file_manager = "alacritty -e ranger"
-terminal = guess_terminal()
+file_manager = "kitty -e ranger"
+terminal = "alacritty --config-file=/home/kshitij/.config/alacritty/alacritty-nontmux.yml"
+terminal2 = "alacritty"
 
 @hook.subscribe.startup_once
 def autostart():
@@ -44,6 +45,7 @@ keys = [
 
     # Terminal
     EK("M-<Return>", lazy.spawn(terminal), desc="Launch terminal"),
+    EK("M-S-<Return>", lazy.spawn(terminal2), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     EK("M-<space>", lazy.next_layout(), desc="Toggle between layouts"),
@@ -53,10 +55,10 @@ keys = [
     EK("M-r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # my shortcuts
-    EK("M-b", lazy.spawn("blender")),
     EK("M-e", lazy.spawn(file_manager)),
     EK("M-f", lazy.spawn(browser)),
-    EK("M-s", lazy.spawn("scripter")),
+    EK("M-s", lazy.spawn("alacritty -e scripter")),
+    EK("M-i", lazy.spawn("alacritty -e /home/kshitij/.scripts/cht.sh")),
 
     # # Music Shortcuts MPD
     # EK("M-S-m", lazy.spawn("mpc toggle")),
@@ -76,6 +78,8 @@ keys = [
     EK("M-S-x", lazy.spawn("systemctl poweroff")),
     EK("M-S-z", lazy.spawn("systemctl reboot")),
     EK("M-S-s", lazy.spawn("systemctl suspend")),
+    EK("M-r", lazy.spawn("redshift -O 3500")),
+    EK("M-S-r", lazy.spawn("redshift -x")),
 
     # rofi launcher
     EK("C-<space>",  lazy.spawn("rofi -show-icons -show drun -display-drun \"\" -font \"FiraCode Nerd Font 12\"")),
@@ -84,15 +88,13 @@ keys = [
     # Screenshot
     EK("<Print>", lazy.spawn("flameshot full")),
     EK("S-<Print>", lazy.spawn("flameshot gui")),
+    EK("M-S-t", lazy.spawn("ocr")),
 
     # audio and brightness
     EK("M-S-<Right>", lazy.spawn("amixer set Master 5%+ unmute")),
     EK("M-S-<Left>", lazy.spawn("amixer set Master 5%- unmute")),
     EK("M-S-<Up>", lazy.spawn("lux -a 5%")),
     EK("M-S-<Down>", lazy.spawn("lux -s 5%")),
-
-    # colorpicker
-    EK("M-x", lazy.spawn('xcolor | xclip -selection c &')),
 
     # Function keys
     EK("<F3>", lazy.spawn("systemctl suspend")),
@@ -132,6 +134,13 @@ layouts = [
         border_focus = 'C74045',
         single_border_width = 0,
     ),
+    layout.Bsp(
+        active_bg = 'b00000',
+        margin = 8,
+        fontsize = 14,
+        name = 'Bsp',
+        font = 'monospace',
+    ),
     layout.TreeTab(
         active_bg = 'b00000',
         margin = 8,
@@ -149,9 +158,9 @@ layouts = [
     #   margin = 8,
     #     name = 'Xmonad Wide'
     # ),
-    layout.Floating(border_normal='C74045',
-        single_border_width = 0,
-    ),
+    # layout.Floating(border_normal='C74045',
+        # single_border_width = 0,
+    # ),
     # layout.RatioTile(),
 ]
 
@@ -180,6 +189,10 @@ floating_layout = layout.Floating(
     Match(wm_class='confirmreset'),  # gitk
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
+    Match(wm_class='yad'),  # gitk
+    Match(wm_class='executor-vim'),  # gitk
+    Match(wm_class='chtsh'),  # gitk
+    Match(wm_class='chwall'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry

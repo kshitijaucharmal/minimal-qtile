@@ -4,8 +4,8 @@
 # To prevent opening a subshell or something
 # https://stackoverflow.com/questions/255414/why-cant-i-change-directories-using-cd-in-a-script
 
-tmux kill-server
-direc=`find $HOME/Documents/ -maxdepth 3 | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
+# tmux kill-server
+direc=`find $HOME/Documents/Programming -maxdepth 3 | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
 if [ -d $direc ]
 then
     cd $direc
@@ -14,11 +14,10 @@ else
     exit
 fi
 # tmux cause i close this too often, and tmux saves it :)
-sed -i "s|root: .*|root: $direc|" $HOME/.config/tmuxinator/testing.yml
-tmuxinator start testing
+# sed -i "s|root: .*|root: $direc|" $HOME/.config/tmuxinator/testing.yml
+# tmuxinator start testing
 #
-# neovide
-# neovide --multigrid $direc
+neovide --multigrid $direc
 #
 # simple terminal
 # nvim $direc

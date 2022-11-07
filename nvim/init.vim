@@ -60,6 +60,7 @@ call plug#begin()
     Plug 'Yggdroot/indentLine'
     Plug 'mhinz/vim-startify'
     Plug 'pseewald/vim-anyfold'
+    Plug 'krivahtoo/silicon.nvim', { 'do': './install.sh' }
     " Themes
     Plug 'yonlu/omni.vim'
     Plug 'marko-cerovac/material.nvim'
@@ -109,6 +110,14 @@ let g:anyfold_fold_comments=1
 set foldlevel=0
 hi Folded term=NONE cterm=NONE
 
+" silicon nvim
+lua << EOF
+require('silicon').setup({
+  font = 'FantasqueSansMono Nerd Font=16',
+  theme = 'Dracula',
+})
+EOF
+
 " Harpoon
 nnoremap <C-h> :lua require("harpoon.ui").toggle_quick_menu()<cr>
 nnoremap <leader>ha <cmd> :lua require("harpoon.mark").add_file()<cr>
@@ -130,8 +139,8 @@ colorscheme wal
 if exists('g:neovide')
     let g:onedark_config = { 'style': 'warmer'} " dark, darker, cool, deep, warm, warmer, light
 	colorscheme jellybeans
-    set guifont=JetBrains\ Mono\ SemiBold:h12
-    let g:neovide_transparency=0.95
+    set guifont=JetBrains\ Mono\ SemiBold:h10
+    let g:neovide_transparency=0.9
     let g:neovide_cursor_vfx_mode = "sonicboom"
 en
 

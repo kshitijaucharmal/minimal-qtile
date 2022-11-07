@@ -1,5 +1,0 @@
-#!/bin/bash
-
-## Just opens my other scripts
-
-ls /home/kshitij/.scripts | dmenu -i -l 10 | xargs -I {} bash /home/kshitij/.scripts/{}
