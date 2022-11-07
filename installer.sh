@@ -11,5 +11,6 @@ cp -rf ranger ~/.config/
 cp -rf rofi ~/.config/
 cp -rf scripts ~/.scripts
 cp -rf wallpapers ~/Pictures/
+cp -rf zshrc ~/.zshrc
 sudo cp -rf fonts/* /usr/share/fonts/
 wal -i wallpapers/wallpaper.jpg

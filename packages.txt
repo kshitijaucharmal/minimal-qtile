@@ -81,3 +81,5 @@ ytfzf
 zip
 zscroll-git
 picom-pijulius-git
+zsh
+garuda-zsh-config
