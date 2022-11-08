@@ -1,5 +1,5 @@
 #!/bin/sh
-pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+sudo pacman -Syyu yay
 yay -Syyu --needed $(cat packages.txt)
 # copy configs
 cp -rf alacritty ~/.config/
