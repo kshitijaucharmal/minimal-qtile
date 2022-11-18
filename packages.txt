@@ -35,6 +35,8 @@ neofetch
 neovide
 neovim
 net-tools
+nodejs
+yarn
 network-manager-applet
 networkmanager-support
 nitrogen

@@ -7,10 +7,11 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import qtile
 
+user = "$USER"
 mod = "mod4"
 browser = "brave"
 file_manager = "kitty -e ranger"
-terminal = "alacritty --config-file=/home/kshitij/.config/alacritty/alacritty-nontmux.yml"
+terminal = f"alacritty --config-file=/home/{user}/.config/alacritty/alacritty-nontmux.yml"
 terminal2 = "alacritty"
 
 @hook.subscribe.startup_once
@@ -58,7 +59,7 @@ keys = [
     EK("M-e", lazy.spawn(file_manager)),
     EK("M-f", lazy.spawn(browser)),
     EK("M-s", lazy.spawn("alacritty -e scripter")),
-    EK("M-i", lazy.spawn("alacritty -e /home/kshitij/.scripts/cht.sh")),
+    EK("M-i", lazy.spawn(f"alacritty -e /home/{user}/.scripts/cht.sh")),
 
     # # Music Shortcuts MPD
     # EK("M-S-m", lazy.spawn("mpc toggle")),

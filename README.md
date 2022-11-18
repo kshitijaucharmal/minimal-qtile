@@ -13,5 +13,8 @@ chmod +x installer.sh
 ./installer.sh
 </code>
 
+Open the file <code> ~/.config/qtile/config.py </code>, 
+and change the $USER to your username
+
 ## Contibuting
 Nothing here yet

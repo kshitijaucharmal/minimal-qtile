@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo pacman -Syyu yay
+[ -z "$(which yay)" ] && sudo pacman -S yay
 yay -Syyu --needed $(cat packages.txt)
 # copy configs
 cp -rf alacritty ~/.config/
