@@ -1,0 +1,6 @@
+#!/bin/sh
+
+DIR=$1
+DEL=`ls -a $1 | fzf -m`
+CONFIRM=`echo -e "No\nYes" | fzf --prompt "Do You Want to delete $(echo $DEL | tr ' ' ',') ?"`
+[ "$CONFIRM" = "Yes" ] && rm -r $DEL || echo "Aborted."

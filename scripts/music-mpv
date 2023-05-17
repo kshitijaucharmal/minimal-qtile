@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mpv "$HOME/mus/$(ls /home/kshitij/mus | dmenu -l 10)"

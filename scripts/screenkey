@@ -5,7 +5,7 @@
 TOGGLE=$HOME/.toggle
 if [ ! -e $TOGGLE ]; then
     touch $TOGGLE
-    screenkey -s small --opacity 0.3 -t 1 --no-systray &
+    screenkey -s small --opacity 0.9 -t 1 --no-systray &
 else
     rm $TOGGLE
     killall screenkey

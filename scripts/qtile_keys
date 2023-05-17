@@ -16,4 +16,4 @@ cat ~/.config/qtile/config.py \
         -e 's/"//g' \
         -e 's/[<>]//g' \
         -e 's/, desc=/\t\t\t\t/' |
-        yad --text-info --geometry=1400x800
+        yad --text-info --geometry=800x400

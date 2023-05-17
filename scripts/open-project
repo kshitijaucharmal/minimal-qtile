@@ -5,7 +5,7 @@
 # https://stackoverflow.com/questions/255414/why-cant-i-change-directories-using-cd-in-a-script
 
 # tmux kill-server
-direc=`find $HOME/Documents/Programming -maxdepth 3 | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
+direc=`find $HOME/dox/programming -maxdepth 4 -type d | fzf -i`
 if [ -d $direc ]
 then
     cd $direc
@@ -17,7 +17,7 @@ fi
 # sed -i "s|root: .*|root: $direc|" $HOME/.config/tmuxinator/testing.yml
 # tmuxinator start testing
 #
-neovide --multigrid $direc
+# neovide --multigrid $direc && exit
 #
 # simple terminal
-# nvim $direc
+nvim $direc

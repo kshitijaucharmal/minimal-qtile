@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-# alacritty -e nvr --servername unity $@
+alacritty -e nvr --servername unity $@
 
-neovide --multigrid "$@"
+# neovide --multigrid "$@"

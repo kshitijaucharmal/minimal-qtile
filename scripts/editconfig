@@ -1,4 +1,4 @@
 #!/bin/sh
 # To be run from the terminal
-file=`find $HOME/.config/ -maxdepth 3 | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
+file=`find $HOME/.config/ -type f | fzf -i`
 [ ${#file} != 0 ] && nvim $file

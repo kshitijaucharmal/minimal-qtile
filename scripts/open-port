@@ -1,0 +1,4 @@
+#!/bin/sh
+
+PORT=`nmap -p1-5000 localhost | grep open | dmenu -l 5 | cut -d\/ -f1`
+brave http://localhost:$PORT

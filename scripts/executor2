@@ -1,0 +1,26 @@
+#!/bin/sh
+
+## this script executes many programs (for vim)
+
+if [ -z "$1" ]; then
+    echo "No Arguments given"
+    exit 0
+fi
+
+filename=`echo $1 | cut -d . -f1`
+extension=`echo $1 | cut -d . -f2`
+
+[ ${#extension} = 0 ] && ./$1 && exit
+
+case $extension in
+    py)      $(which python) $1 ;;
+    rs)      $(which cargo) run ;;
+    lua)     $(which lua) $1 ;;
+    cs)      $(which csc) $1 ;;
+    pde)     $(which processing-java) --sketch=../$(pwd | rev | cut -d'/' -f1 | rev) --run ;;
+    cpp | h) $(which g++) -o $filename $1 -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl ;;
+    #cpp | h | c) $(which make) ;;
+    java)    $(which javac) $1 && $(which java) $filename ;;
+    js)      $(which node) $1 ;;
+    sh)      $(which bash) $1 ;;
+esac

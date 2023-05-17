@@ -408,4 +408,6 @@ shell:
   #log_level: Warn
   # Print all received window events.
   #print_events: false
-theme: Ayu-Dark
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+theme: Jellybeans

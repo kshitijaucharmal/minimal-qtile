@@ -1,0 +1,11 @@
+#!/bin/sh
+
+noteFilename="$HOME/.notes/note-$(date +%A-%b-%d-%y).md"
+
+[ -f $noteFilename ] || echo "# Notes for $(date +%A-%b-%d-%y)" > $noteFilename
+
+alacritty --class=notes -e nvim -c "norm Go" \
+    -c "norm Go## $(date +%H:%M)" \
+    -c "norm G2o" \
+    -c "norm zz" \
+    -c "startinsert" $noteFilename

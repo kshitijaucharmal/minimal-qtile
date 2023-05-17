@@ -1,0 +1,25 @@
+#!/bin/sh
+
+echo "%c   Character
+%d   Signed integer
+%e   Scientific notation of floats
+%f   Float values
+%g   Similar as %e or %E
+%hi   Signed integer (short)
+%hu   Unsigned Integer (short)
+%i   Unsigned integer
+%l   Long
+%lf   Double
+%Lf   Long double
+%lu   Unsigned int or unsigned long
+%lli   Long long
+%llu   Unsigned long long
+%o   Octal representation
+%p   Pointer
+%s   String
+%u   Unsigned int
+%x   Hexadecimal representation
+%n   Prints nothing
+%%   Prints % character 
+" | dmenu -l 10 -i | cut -d' ' -f1 | xclip -sel c
+

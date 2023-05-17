@@ -1,0 +1,42 @@
+#!bin/sh
+
+# Alias to get to bookmarks faster
+alias bm='nvim $HOME/.scripts/bookmarks'
+
+alias pbl='/home/kshitij/dox/programming/Python/PBL-Project'
+
+alias rm='rm -iv'
+alias ec='editconfig'
+alias crontab='crontab -i'
+alias es='nvim /home/kshitij/.scripts/$(ls /home/kshitij/.scripts | fzf)'
+alias ew='nvim /srv/http/$(ls /srv/http | fzf)'
+alias eb='editblog'
+alias op='source ~/.scripts/open-project' # Runs on the same bash process
+alias se='sudoedit'
+alias nv='nvim'
+alias v='nvim'
+alias vide='neovide --multigrid'
+alias or='open-repo'
+alias ll='exa -l --icons'
+alias la='exa -la --icons'
+alias ls='exa'
+alias ff='fastfetch'
+alias pdf='zathura'
+alias img='sxiv'
+alias ping='ping -c4'
+alias hs='hugo server --noHTTPCache'
+alias pup='pup --color'
+alias uw="upload-website ~/repos/hugo-website-main $1"
+alias btop='bpytop'
+alias :wq='exit'
+alias ac='ani-cli -d -q best'
+alias nb='newsboat'
+alias mutt='neomutt'
+alias lf='lfcd'
+alias photo='kdeconnect-cli -n Kshitij-ph --photo ~/phonefiles/"$(date)".png'
+
+# Directories Jumping
+alias an='~/vids/Anime/'
+alias pro='~/dox/programming/ && lf'
+alias bl='~/repos/hugo-website-main/content/blog/'
+alias os='/mnt/Data/os/'

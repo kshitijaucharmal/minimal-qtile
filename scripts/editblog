@@ -1,0 +1,5 @@
+#!/bin/sh
+# To be run from the terminal
+file=`ls /home/kshitij/repos/hugo-website-main/content/blog | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
+newfile="/home/kshitij/repos/hugo-website-main/content/blog/$file"
+nvim $newfile

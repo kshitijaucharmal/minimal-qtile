@@ -3,8 +3,8 @@
 # Run script as ". open-repo"
 # To prevent opening a subshell or something
 # https://stackoverflow.com/questions/255414/why-cant-i-change-directories-using-cd-in-a-script
-tmux kill-server
-direc=`find $HOME/repos/ -maxdepth 1 | fzf --margin 10% --padding 5% --border --preview 'bat {}' --color bg:#222222,preview-bg:#515151`
+# tmux kill-server
+direc=`find $HOME/repos/ -maxdepth 1 | fzf`
 if [ -d $direc ]
 then
     cd $direc
@@ -12,5 +12,6 @@ else
     echo "Error: Not a directory"
     exit
 fi
-sed -i "s|root: .*|root: $direc|" $HOME/.config/tmuxinator/testing.yml
-tmuxinator start testing
+#sed -i "s|root: .*|root: $direc|" $HOME/.config/tmuxinator/testing.yml
+#tmuxinator start testing
+nvim $direc

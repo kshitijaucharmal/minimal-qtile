@@ -1,0 +1,14 @@
+#!/bin/sh
+
+sleeptime=0.2
+# 1 for true, 0 for false
+showtitle=1
+shuffle=0
+
+[ $shuffle = 1 ] && list=$(pokemon-colorscripts -l | shuf) || list=$(pokemon-colorscripts -l)
+
+
+for i in $list; do
+  [ $showtitle = 0 ] && title="--no-title"
+  pokemon-colorscripts -n $i $title && sleep $sleeptime && clear
+done;

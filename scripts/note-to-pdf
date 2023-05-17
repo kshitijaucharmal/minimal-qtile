@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pandoc --pdf-engine=xelatex $HOME/.notes/note-$(date +%A-%b-%d-%y).md -o /tmp/notetaken.pdf
+zathura /tmp/notetaken.pdf

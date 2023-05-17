@@ -1,0 +1,23 @@
+#!/bin/sh
+
+hugo_project="/home/kshitij/repos/hugo-website-main"
+today_date=`date | cut -d' ' -f1-4 | tr ' ' '-'`
+logs_file="/home/kshitij/.logs/bloglog.txt"
+
+cd $hugo_project
+[ -f `echo "$hugo_project/blog/$today_date.md"` ] && exit
+hugo new blog/$today_date.md 2>> $logs_file
+hugo
+hugo -D
+
+git add content/blog/$today_date.md
+git add public
+git commit -m "Added Blog file for Date $today_date"
+git push origin main
+
+cd public
+git add -A
+git commit -m "Added Blog for date $today_date to website"
+git push origin master
+
+echo "$(date) - Successful" >> $logs_file

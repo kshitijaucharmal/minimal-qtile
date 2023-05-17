@@ -2,7 +2,7 @@
 
 ## This script makes using godot very fast and easy
 # vars
-GODOT_PROJECT_PATH=$HOME/GodotProjects # directory where you save your projects
+GODOT_PROJECT_PATH=$HOME/godotprojects # directory where you save your projects
 ####
 
 project=`ls $GODOT_PROJECT_PATH | dmenu -i -l 10` # the menu that spawn when you run the script
@@ -23,8 +23,8 @@ fi
 ####
 
 godot-mono --editor --path "$projectpath" & # open the editor directly
-sleep 2 # sleep for 2 secs
-xdotool key Super+3 # only for my use, shifts the workspace to ws 3
+# sleep 2 # sleep for 2 secs
+# xdotool key Super+3 # only for my use, shifts the workspace to ws 3
 notify-send --icon=godot "Godot started" "Opened Project \"$project\"" # notify that started
 
 # only works for alacritty, you need to find different commands compatible with your terminal

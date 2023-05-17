@@ -1,0 +1,6 @@
+#!/bin/sh
+link=`echo $(xclip -o -sel c) | dmenu -l 10 -i`
+[ -z "$link" ] && exit
+selected_link=`curl -sL $link | pup 'a attr{href}' | grep -v '^#' | grep -v '^/' | dmenu -i -l 10`
+[ -z "$selected_link" ] && exit
+brave $selected_link

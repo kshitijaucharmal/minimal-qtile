@@ -1,0 +1,5 @@
+#!/bin/sh
+
+FILENAME="/tmp/qrfile.png"
+xclip -o -sel c | qrencode -o "$FILENAME"
+sxiv $FILENAME

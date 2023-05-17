@@ -1,0 +1,19 @@
+#!/bin/sh
+
+hugo_project=$1
+[ -z "$hugo_project" ] && hugo_project="/home/kshitij/repos/hugo-website-main"
+cd $hugo_project
+
+git add -A
+git commit -m "$2"
+git push origin main
+
+hugo
+hugo -D
+
+cd public
+git add -A
+git commit -m "$2"
+git push origin master
+
+notify-send "Made the website" "Successfully Done"
