@@ -16,8 +16,8 @@ msg() {
 }
 
 # Browser
-if [[ -f /usr/bin/firefox ]]; then
-	app="firefox"
+if [[ -f /usr/bin/vimb ]]; then
+	app="vimb"
 elif [[ -f /usr/bin/chromium ]]; then
 	app="chromium"
 elif [[ -f /usr/bin/midori ]]; then

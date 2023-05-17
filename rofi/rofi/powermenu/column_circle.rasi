@@ -13,6 +13,8 @@ configuration {
 	icon-theme: 					"Papirus";
     drun-display-format:            "{name}";
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -42,7 +44,7 @@ textbox-prompt-colon {
 	str: 							"System";
 	background-color: 				@border;
 	text-color: 					@background;
-    padding:                        1% 1% 1% 2.2%;
+    padding:                        1% 1% 1% 1.5%;
 }
 
 inputbar {
@@ -82,13 +84,11 @@ element {
 }
 
 element-text {
-    background-color: 				#00000000;
-    text-color:       				inherit;
-	font:							"feather 32";
+	font:							"feather 22";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         5% 0% 5% 0%;
+    margin:                         5% 0% 7% 0%;
 }
 
 element normal.urgent,

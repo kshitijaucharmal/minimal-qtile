@@ -14,6 +14,8 @@ configuration {
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -26,7 +28,7 @@ window {
 	border:							0% 0% 3% 0%;
 	border-color:					@border;
     border-radius:                  0% 0% 0% 0%;
-    height:                         68.5%;
+    height:                         73.5%;
     width:                          55%;
     location:                       center;
     x-offset:                       0;
@@ -93,17 +95,11 @@ element {
 }
 
 element-icon {
-    background-color: 				#00000000;
-    text-color:       				inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           64px;
+    size:                           49px;
     border:                         0px;
 }
 
 element-text {
-    background-color: 				#00000000;
-    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

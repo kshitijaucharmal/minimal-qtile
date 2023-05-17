@@ -13,6 +13,8 @@ configuration {
 	icon-theme: 					"Papirus";
     drun-display-format:            "{name}";
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -23,8 +25,8 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  0px;
-    height:                         28.5%;
-    width:                          50%;
+    height:                         30%;
+    width:                          54%;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -82,13 +84,11 @@ element {
 }
 
 element-text {
-    background-color: 				#00000000;
-    text-color:       				inherit;
 	font:							"feather 32";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         4.5% 2.7% 4.5% 2.7%;
+    margin:                         4.5% 2.7% 8.5% 2.7%;
 }
 
 element normal.urgent,

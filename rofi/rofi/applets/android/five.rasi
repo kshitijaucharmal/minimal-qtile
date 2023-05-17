@@ -8,8 +8,9 @@
  */
 
 configuration {
-    show-icons:                     false;
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -23,7 +24,7 @@ configuration {
 window {
     transparency:                   "real";
     border-radius:                  12px;
-    width:                          100px;
+    width:                          80px;
     location:                       east;
     x-offset:                       -15px;
     y-offset:                       0px;
@@ -31,8 +32,8 @@ window {
 
 listview {
     lines:							5;
-    margin:                         8px;
-    spacing:                        8px;
+    margin:                         5px;
+    spacing:                        5px;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
@@ -51,26 +52,24 @@ element {
 }
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
 	font:							"feather 20";
     expand:                         true;
     horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    margin:                         26px 26px 26px 26px;
+    vertical-align:                 0;
+    margin:                         5px 5px 30px 5px;
 }
 
 element normal.urgent,
 element alternate.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
+    background-color:               @off;
+    text-color:                     @background;
     border-radius:                  10px;
 }
 
 element normal.active,
 element alternate.active {
-    background-color:               @background-alt;
-    text-color:                     @foreground;
+    background-color:               @on;
+    text-color:                     @background;
 }
 
 element selected {
@@ -82,11 +81,11 @@ element selected {
 }
 
 element selected.urgent {
-    background-color:               @urgent;
-    text-color:                     @foreground;
+    background-color:               @on;
+    text-color:                     @background;
 }
 
 element selected.active {
-    background-color:               @background-alt;
-    color:                          @foreground;
+    background-color:               @off;
+    color:                          @background;
 }

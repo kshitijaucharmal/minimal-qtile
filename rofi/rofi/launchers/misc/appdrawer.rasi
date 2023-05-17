@@ -14,6 +14,8 @@ configuration {
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -102,7 +104,7 @@ mainbox {
 	border-color:					@accent;
     children:                       [ inputbar, listview ];
     spacing:                       	2%;
-    padding:                        5% 1.5% 0% 1.5%;
+    padding:                        6% 1.5% 0% 1.5%;
 }
 
 element {
@@ -114,17 +116,11 @@ element {
 }
 
 element-icon {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           64px;
+    size:                           49px;
     border:                         0px;
 }
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

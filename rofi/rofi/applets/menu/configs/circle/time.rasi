@@ -8,9 +8,10 @@
  */
 
 configuration {
-    show-icons:                     false;
 	font:                      		"Comfortaa 14";
     disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -87,13 +88,11 @@ element {
 }
 
 element-text {
-    background-color: 				inherit;
-    text-color:       				inherit;
 	font:							"Hurmit Nerd Font Mono 48";
     expand:                         true;
     horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    margin:                         60px 0px 60px 0px;
+    vertical-align:                 0;
+    margin:                         25px 0px 70px 0px;
 }
 
 element normal.urgent,
