@@ -1,0 +1,367 @@
+# Copyright (c) 2010 Aldo Cortesi
+# Copyright (c) 2010, 2014 dequis
+# Copyright (c) 2012 Randall Ma
+# Copyright (c) 2012-2014 Tycho Andersen
+# Copyright (c) 2012 Craig Barnes
+# Copyright (c) 2013 horsik
+# Copyright (c) 2013 Tao Sauvage
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+from typing import List  # noqa: F401
+import os, subprocess
+from libqtile import hook
+
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+from libqtile.utils import guess_terminal
+from libqtile import qtile
+from libqtile.config import EzKey as Key
+
+mod = "mod4"
+terminal = guess_terminal()
+# terminal = 'kitty'
+
+@hook.subscribe.startup_once
+def autostart():
+	home = os.path.expanduser("~/.config/qtile/autostart.sh")
+	subprocess.call([home])
+
+keys = [
+    # Switch between windows
+    Key("M-h", lazy.layout.left(), desc="Move focus to left"),
+    Key("M-l", lazy.layout.right(), desc="Move focus to right"),
+    Key("M-j", lazy.layout.down(), desc="Move focus down"),
+    Key("M-k", lazy.layout.up(), desc="Move focus up"),
+    Key("M-<Tab>", lazy.layout.next(), desc="Move window focus to other window"),
+    Key("M-z", lazy.window.toggle_fullscreen()),
+
+    # Move windows between left/right columns or move up/down in current stack.
+    # Moving out of range in Columns layout will create new column.
+    Key("M-S-h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key("M-S-l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key("M-S-j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key("M-S-k", lazy.layout.shuffle_up(), desc="Move window up"),
+
+    # Grow windows. If current window is on the edge of screen and direction
+    # will be to screen edge - window would shrink.
+    Key("M-C-k", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key("M-C-l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key("M-C-j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key("M-C-k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key("M-n", lazy.layout.normalize(), desc="Reset all window sizes"),
+
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key("M-S-<Return>", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+    Key("M-<Return>", lazy.spawn(terminal), desc="Launch terminal"),
+
+    # Toggle between different layouts as defined below
+    Key("M-<Space>", lazy.next_layout(), desc="Toggle between layouts"),
+    Key("M-q", lazy.window.kill(), desc="Kill focused window"),
+
+    Key("M-<F5>", lazy.restart(), desc="Restart Qtile"),
+    Key("M-S-q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key("M-r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    # my shortcuts
+    Key("M-s", lazy.spawn("spotify")),
+    Key("M-e", lazy.spawn("nautilus")),
+    Key("M-b", lazy.spawn("blender")),
+    Key("M-f", lazy.spawn("brave")),
+    Key("M-S-x", lazy.spawn("systemctl poweroff")),
+    Key("M-S-z", lazy.spawn("systemctl reboot")),
+    Key("C-<Space>",  lazy.spawn("rofi -show drun")),
+    Key("M-u", lazy.spawn("~/Applications/UnityHub.AppImage")), 
+    Key("M-S-l", lazy.spawn("quicklinks")),
+    Key("M-a", lazy.spawn("apps")),
+    
+    # Screenshot
+    Key("<Print>", lazy.spawn("flameshot gui")),
+
+    # audio and brightness
+    Key("M-S-<Right>", lazy.spawn("amixer set Master 5%+ unmute")),
+    Key("M-S-<Left>", lazy.spawn("amixer set Master 5%- unmute")),
+    Key("M-S-<Up>", lazy.spawn("lux -a 5%")),
+    Key("M-S-<Down>", lazy.spawn("lux -s 5%")),
+    Key("M-S-p", lazy.spawn("rofi-pass --last-used")),
+    
+    # colorpicker
+    Key("M-x", lazy.spawn('xcolor-pick')),
+
+    # Function keys
+    Key("<F3>", lazy.spawn("systemctl suspend")),
+    Key("<F6>", lazy.spawn("amixer set Master 5%- unmute")),
+    Key("<F7>", lazy.spawn("amixer set Master 5%+ unmute")),
+    Key("<F9>", lazy.spawn("lux -s 5%")),
+    Key("<F10>", lazy.spawn("lux -a 5%")),
+]
+
+# Colors
+colors = [["#23202A", "#23202A"], # panel background
+          ["#44414B", "#44414B"], # background for current screen tab
+          ["#ffffff", "#ffffff"], # font color for group names
+          ["#101015", "#101015"], # border line color for current tab
+          ["#CCFF00", "#CCFF00"], # border line color for 'other tabs' and color for 'odd widgets'
+          ["#121015", "#121015"], # color for the 'even widgets'
+          ["#AEDA01", "#AEDA01"], # window name
+          ["#ffffff", "#ffffff"]] # backbround for inactive screens
+
+WHITE='#FFFFFF'
+
+groups = [Group(i) for i in [
+    # "", "", "", "", "", "",
+    'web', 'code', 'term', 'music', 'files', 'vlc'
+]]
+
+
+
+for i, group in enumerate(groups):
+    actual_key = str(i + 1)
+    keys.extend([
+        # Switch to workspace N
+        Key(f"M-{actual_key}", lazy.group[group.name].toscreen()),
+        # Send window to workspace N
+        Key(f"M-S-{actual_key}", lazy.window.togroup(group.name))
+    ])
+
+layouts = [
+    #layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
+    # layout.Max(),
+    layout.MonadTall(
+    	fontsize = 8,
+    	margin = 4,
+        name = 'Xmonad Tall',
+        border_focus = '#C11918',
+        border_width = 2,
+    ),
+    layout.TreeTab(
+        active_bg = 'b00000',
+        vspace = 5,
+        fontsize = 14,
+        name = 'TreeTab',
+        sections = ['FIRST'],
+        panel_width = 150,
+        place_right = True,
+        bg_color = '000000aa',
+        font = 'alsina',
+        padding_left = 0,
+    ),
+    # layout.MonadWide(
+    # 	fontsize = 10,
+    # 	margin = 8,
+    #     name = 'Xmonad Wide'
+    # ),
+    layout.Bsp(
+        name = 'Grid',
+        border_focus = '0597F2',
+    ),
+    # layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    layout.Floating(),
+    # layout.Matrix(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
+]
+
+widget_defaults = dict(
+    font='Ubuntu Mono',
+    fontsize=14,
+    padding=2,
+    background='000000aa',
+)
+extension_defaults = widget_defaults.copy()
+
+# This is the bar, or the panel, and the widgets within the bar.
+def init_widgets_list():
+    widgets_list = [
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0],
+                       ),
+              widget.GroupBox(
+                       font = "Ubuntu Bold",
+                       fontsize = 14,
+                       margin_y = 3,
+                       margin_x = 0,
+                       padding_y = 5,
+                       padding_x = 3,
+                       borderwidth = 3,
+                       active = '#ff4444',
+                       inactive = colors[7],
+                       rounded = True,
+                       highlight_color = colors[1],
+                       highlight_method = "line",
+                       this_current_screen_border = colors[4],
+                       this_screen_border = colors[6],
+                       other_current_screen_border = colors[6],
+                       other_screen_border = colors[4],
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+              widget.WindowName(
+                       foreground = colors[6],
+                       background = colors[0],
+                       padding = 0,
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 14
+                       ),
+              widget.Systray(
+                       background = colors[0],
+                       padding = 5
+                       ),
+             widget.Net(
+                       interface = "wlo1",
+                       format = '{down}↓↑{up}',
+                       foreground = "#121015",
+                       background = colors[4],
+                       padding = 5,
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 12,
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('gnome-control-center wifi')},
+                       ),
+              widget.TextBox(
+                       text = " ⟳",
+                       padding = 2,
+                       foreground = WHITE, 
+                       background = colors[3],
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 14
+                       ),
+              widget.CheckUpdates(
+                       update_interval = 1800,
+                       distro = "Arch_checkupdates",
+                       font = "Ubuntu Mono Bold",
+                       display_format = "{updates}",
+                       foreground = WHITE,
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('alacritty -e sudo pacman -Syu')},
+                       background = colors[3],
+                       ),
+                widget.TextBox(
+                         text = " 🖬",
+                         foreground = "#121015",
+                         background = colors[4],
+                         padding = 0,
+                       font = "Ubuntu Mono Bold",
+                         fontsize = 14
+                         ),
+                widget.Memory(
+                		   update_interval = 10,
+                         foreground = "#121015",
+                         background = colors[4],
+                         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('alacritty -e bpytop')},
+                       font = "Ubuntu Mono Bold",
+                         padding = 5
+                         ),
+              widget.TextBox(
+                      text = " Vol:",
+                       foreground = WHITE,
+                       background = colors[3],
+                       font = "Ubuntu Mono Bold",
+                       padding = 0
+                       ),
+              widget.Volume(
+                       foreground = WHITE,
+                       background = colors[3],
+                       font = "Ubuntu Mono Bold",
+                       padding = 5
+                       ),
+              widget.CurrentLayout(
+                       foreground = "#121015",
+                       background = colors[4],
+                       padding = 5,
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 14
+                       ),
+              widget.Clock(
+                       foreground = WHITE,
+                       background = colors[3],
+                       format = "%a, %b %_d (%I:%M) %p ",
+                       font = "Ubuntu Mono Bold",
+                       fontsize = 14
+                       ),
+              widget.Battery(
+              	       foreground = "#121015",
+                       background = colors[4],
+                       format = '{char} {percent:2.0%} ',
+                       font = "Ubuntu Mono Bold",
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('gnome-control-center power')},
+              	       ),
+              ]
+    return widgets_list
+
+screens = [
+    # Screen(top=bar.Bar(widgets=init_widgets_list(), opacity=0.85, size=18)),
+]
+
+# Drag floating layouts.
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+]
+
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: List
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+floating_layout = layout.Floating(float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirmreset'),  # gitk
+    Match(wm_class='makebranch'),  # gitk
+    Match(wm_class='maketag'),  # gitk
+    Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(title='branchdialog'),  # gitk
+    Match(title='pinentry'),  # GPG key password entry
+])
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+
+# If things like steam games want to auto-minimize themselves when losing
+# focus, should we respect this or not?
+auto_minimize = True
+
+# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# string besides java UI toolkits; you can see several discussions on the
+# mailing lists, GitHub issues, and other WM documentation that suggest setting
+# this string if your java app doesn't work correctly. We may as well just lie
+# and say that we're a working one by default.
+#
+# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
+# java that happens to be on java's whitelist.
+wmname = "mutter"
