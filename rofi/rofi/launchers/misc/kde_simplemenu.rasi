@@ -14,8 +14,6 @@ configuration {
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -57,7 +55,7 @@ window {
 	border:							0px;
 	border-color:					@border;
     border-radius:                  0px;
-	width:							42%;
+	width:							38%;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -87,7 +85,7 @@ inputbar {
     background-color:               @background;
     text-color:                     @foreground;
     expand:                         false;
-	border:							1px;
+	border:							0.1%;
     border-radius:                  4px;
 	border-color:					@accent;
     margin:                         0% 0% 0% 0%;
@@ -123,11 +121,17 @@ element {
 }
 
 element-icon {
-    size:                           49px;
+    background-color: 				@background-alt;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           64px;
     border:                         0px;
 }
 
 element-text {
+    background-color: 				@background-alt;
+    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
@@ -137,7 +141,7 @@ element-text {
 element selected {
     background-color:               @background-bar;
     text-color:                     @foreground;
-	border:							1px;
+	border:							0.1%;
     border-radius:                  4px;
     border-color:                  	@accent;
 }

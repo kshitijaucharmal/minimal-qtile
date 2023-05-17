@@ -4,7 +4,7 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 window:
-  opacity: 0.85
+  opacity: 0.75
 padding:
   x: 10
   y: 10
@@ -93,7 +93,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "JetBrains Mono Medium"
+    family: "JetBrains Mono SemiBold"
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -126,7 +126,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 8.0
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   #offset:
@@ -145,30 +145,30 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#0A0E14'
-    foreground: '#B3B1AD'
+    background: '#000000'
+    foreground: '#eaeaea'
 
   # Normal colors
   normal:
-    black: '#01060E'
-    red: '#EA6C73'
-    green: '#91B362'
-    yellow: '#F9AF4F'
-    blue: '#53BDFA'
-    magenta: '#FAE994'
-    cyan: '#90E1C6'
-    white: '#C7C7C7'
+    black: '#000000'
+    red: '#d54e53'
+    green: '#b9ca4a'
+    yellow: '#e6c547'
+    blue: '#7aa6da'
+    magenta: '#c397d8'
+    cyan: '#70c0ba'
+    white: '#424242'
 
   # Bright colors
   bright:
-    black: '#686868'
-    red: '#F07178'
-    green: '#C2D94C'
-    yellow: '#FFB454'
-    blue: '#59C2FF'
-    magenta: '#FFEE99'
-    cyan: '#95E6CB'
-    white: '#FFFFFF'
+    black: '#666666'
+    red: '#ff3334'
+    green: '#9ec400'
+    yellow: '#e7c547'
+    blue: '#7aa6da'
+    magenta: '#b77ee0'
+    cyan: '#54ced6'
+    white: '#2a2a2a'
 # Live config reload (changes require restart)
 #live_config_reload: true
 # Shell
@@ -182,6 +182,10 @@ colors:
 #   - (Windows) powershell
 shell:
   program: /usr/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
   #- -u # force UTF-8 in tmux
   # Startup directory
   #
@@ -357,54 +361,66 @@ shell:
   # If the same trigger is assigned to multiple actions, all of them are executed
   # at once.
   key_bindings:
-  # (Windows, Linux, and BSD only)
-  #- { key: V,        mods: Control|Shift, action: Paste            }
-  #- { key: C,        mods: Control|Shift, action: Copy             }
-  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
-  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  # (Windows only)
-  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-  # (macOS only)
-  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
-  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
-  #- { key: K,      mods: Command,         action: ClearHistory     }
-  #- { key: K,      mods: Command,         chars: "\x0c"            }
-  #- { key: V,      mods: Command,         action: Paste            }
-  #- { key: C,      mods: Command,         action: Copy             }
-  #- { key: H,      mods: Command,         action: Hide             }
-  #- { key: M,      mods: Command,         action: Minimize         }
-  #- { key: Q,      mods: Command,         action: Quit             }
-  #- { key: W,      mods: Command,         action: Quit             }
-  #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
-  #- { key: Paste,                    action: Paste                            }
-  #- { key: Copy,                     action: Copy                             }
-  #- { key: L,         mods: Control, action: ClearLogNotice                   }
-  #- { key: L,         mods: Control, chars: "\x0c"                            }
-  - { key: K,    mods: Control|Shift,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: J,  mods: Control|Shift,   action: ScrollPageDown, mode: ~Alt       }
-  #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
-  #debug:
-  # Display the time it takes to redraw each frame.
-  #render_timer: false
-  # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
-  #log_level: Warn
-  # Print all received window events.
-  #print_events: false
-theme: Ayu-Dark
+    # (Windows, Linux, and BSD only)
+    #- { key: V,        mods: Control|Shift, action: Paste            }
+    #- { key: C,        mods: Control|Shift, action: Copy             }
+    #- { key: Insert,   mods: Shift,         action: PasteSelection   }
+    #- { key: Key0,     mods: Control,       action: ResetFontSize    }
+    #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
+    #- { key: Add,      mods: Control,       action: IncreaseFontSize }
+    #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
+    #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+    # (Windows only)
+    #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
+    # (macOS only)
+    #- { key: Key0,   mods: Command,         action: ResetFontSize    }
+    #- { key: Equals, mods: Command,         action: IncreaseFontSize }
+    #- { key: Add,    mods: Command,         action: IncreaseFontSize }
+    #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
+    #- { key: K,      mods: Command,         action: ClearHistory     }
+    #- { key: K,      mods: Command,         chars: "\x0c"            }
+    #- { key: V,      mods: Command,         action: Paste            }
+    #- { key: C,      mods: Command,         action: Copy             }
+    #- { key: H,      mods: Command,         action: Hide             }
+    #- { key: M,      mods: Command,         action: Minimize         }
+    #- { key: Q,      mods: Command,         action: Quit             }
+    #- { key: W,      mods: Command,         action: Quit             }
+    #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
+    #- { key: Paste,                    action: Paste                            }
+    #- { key: Copy,                     action: Copy                             }
+    #- { key: L,         mods: Control, action: ClearLogNotice                   }
+    #- { key: L,         mods: Control, chars: "\x0c"                            }
+    - {
+        key: K,
+        mods: Control|Shift,
+        action: ScrollPageUp,
+        mode: ~Alt
+      }
+    - {
+        key: J,
+        mods: Control|Shift,
+        action: ScrollPageDown,
+        mode: ~Alt
+      }
+    #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
+    #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+    #debug:
+    # Display the time it takes to redraw each frame.
+    #render_timer: false
+    # Keep the log file after quitting Alacritty.
+    #persistent_logging: false
+    # Log level
+    #
+    # Values for `log_level`:
+    #   - None
+    #   - Error
+    #   - Warn
+    #   - Info
+    #   - Debug
+    #   - Trace
+    #log_level: Warn
+    # Print all received window events.
+    #print_events: false
+import:
+  - /home/kshitij/.config/alacritty/catppuccin/catppuccin-mocha.yml
+theme: Tomorrow-Night-Bright

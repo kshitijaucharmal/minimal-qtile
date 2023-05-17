@@ -7,16 +7,21 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import qtile
 
-user = "$USER"
 mod = "mod4"
 browser = "brave"
-file_manager = "kitty -e ranger"
-terminal = f"alacritty --config-file=/home/{user}/.config/alacritty/alacritty-nontmux.yml"
-terminal2 = "alacritty"
+browser_private = "brave --incognito"
+browser_tor = "brave --tor"
+file_manager = "alacritty -e lf"
+wallpaper_manager = "kitty -e ranger"
+terminal = "alacritty"
+terminal2 = "alacritty --config-file=/home/kshitij/.config/alacritty/alacritty-nontmux.yml"
+monitor = "alacritty -e bpytop"
+notetaker = "/home/kshitij/.scripts/note-taker"
+notetopdf = "/home/kshitij/.scripts/note-to-pdf"
 
 @hook.subscribe.startup_once
 def autostart():
-	home = os.path.expanduser("~/.config/qtile/autostart.sh")
+	home = os.path.expanduser("~/.scripts/autostart")
 	subprocess.call([home])
 
 keys = [
@@ -48,20 +53,30 @@ keys = [
     EK("M-<Return>", lazy.spawn(terminal), desc="Launch terminal"),
     EK("M-S-<Return>", lazy.spawn(terminal2), desc="Launch terminal"),
 
-    # Toggle between different layouts as defined below
+    # Placement and stuff
     EK("M-<space>", lazy.next_layout(), desc="Toggle between layouts"),
+    EK("M-n", lazy.spawn(notetaker), desc="Note Taker"),
+    EK("M-S-n", lazy.spawn(notetopdf), desc="Note Taker to pdf"),
+
+    # Window Management
     EK("M-q", lazy.window.kill(), desc="Kill focused window"),
     EK("M-<F5>", lazy.restart(), desc="Restart Qtile"),
     EK("M-S-q", lazy.shutdown(), desc="Shutdown Qtile"),
     EK("M-r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # my shortcuts
+    EK("M-w", lazy.spawn(wallpaper_manager)),
     EK("M-e", lazy.spawn(file_manager)),
     EK("M-f", lazy.spawn(browser)),
-    EK("M-s", lazy.spawn("alacritty -e scripter")),
-    EK("M-i", lazy.spawn(f"alacritty -e /home/{user}/.scripts/cht.sh")),
+    EK("M-b", lazy.spawn("blender")),
+    EK("M-S-f", lazy.spawn(browser_private)),
+    EK("M-d", lazy.spawn("telegram-desktop")),
+    EK("M-C-S-f", lazy.spawn(browser_tor)),
+    EK("M-s", lazy.spawn("scripter")),
+    EK("M-h", lazy.spawn(monitor)),
+    EK("M-i", lazy.spawn("alacritty -e /home/kshitij/.scripts/cht.sh")),
 
-    # # Music Shortcuts MPD
+    # Music Shortcuts MPD
     # EK("M-S-m", lazy.spawn("mpc toggle")),
     # EK("M-<period>", lazy.spawn("mpc next")),
     # EK("M-<comma>", lazy.spawn("mpc prev")),
@@ -74,12 +89,14 @@ keys = [
     EK("M-<comma>", lazy.spawn("playerctl previous")),
     EK("M-S-<period>", lazy.spawn("playerctl position 5+")),
     EK("M-S-<comma>", lazy.spawn("playerctl position 5-")),
+    EK("M-<Right>", lazy.spawn("playerctl volume 0.05%+")),
+    EK("M-<Left>", lazy.spawn("playerctl volume 0.05%-")),
 
     # powershortcuts
     EK("M-S-x", lazy.spawn("systemctl poweroff")),
     EK("M-S-z", lazy.spawn("systemctl reboot")),
     EK("M-S-s", lazy.spawn("systemctl suspend")),
-    EK("M-r", lazy.spawn("redshift -O 3500")),
+    EK("M-r", lazy.spawn("redshift -O 5000")),
     EK("M-S-r", lazy.spawn("redshift -x")),
 
     # rofi launcher
@@ -90,10 +107,11 @@ keys = [
     EK("<Print>", lazy.spawn("flameshot full")),
     EK("S-<Print>", lazy.spawn("flameshot gui")),
     EK("M-S-t", lazy.spawn("ocr")),
+    EK("M-c", lazy.spawn("convert-to-qr")),
 
     # audio and brightness
-    EK("M-S-<Right>", lazy.spawn("amixer set Master 5%+ unmute")),
-    EK("M-S-<Left>", lazy.spawn("amixer set Master 5%- unmute")),
+    EK("M-S-<Right>", lazy.spawn("amixer set Master 2%+ unmute")),
+    EK("M-S-<Left>", lazy.spawn("amixer set Master 2%- unmute")),
     EK("M-S-<Up>", lazy.spawn("lux -a 5%")),
     EK("M-S-<Down>", lazy.spawn("lux -s 5%")),
 
@@ -101,20 +119,21 @@ keys = [
     EK("<F3>", lazy.spawn("systemctl suspend")),
     EK("<F6>", lazy.spawn("amixer set Master 5%- unmute")),
     EK("<F7>", lazy.spawn("amixer set Master 5%+ unmute")),
-    EK("<F9>", lazy.spawn("lux -s 5%")),
-    EK("<F10>", lazy.spawn("lux -a 5%")),
+    # EK("<F9>", lazy.spawn("lux -s 5%")),
+    # EK("<F10>", lazy.spawn("lux -a 5%")),
 ]
 
 # Dont care for icons no more :)
 groups = [
-    Group("1"),
-    Group("2"),
+    Group("1", matches=[Match(wm_class=["brave-browser", "Brave-browser"])]),
+    Group("2", matches=[Match(wm_class=["Alacritty", "Alacritty"])]),
     Group("3"),
     Group("4"),
     Group("5"),
     Group("6", matches=[Match(wm_class=["spotify", "Spotify"])]),
     Group("7"),
     Group("8"),
+    Group("9"),
 ]
 
 for i, group in enumerate(groups):
@@ -130,11 +149,16 @@ layouts = [
     layout.MonadTall(
         fontsize = 10,
         margin = 8,
-        border_width = 2,
+        border_width = 1,
         name = 'Xmonad Tall',
         border_focus = 'C74045',
         single_border_width = 0,
     ),
+    # layout.MonadWide(
+    #   fontsize = 10,
+    #   margin = 8,
+    #     name = 'Xmonad Wide'
+    # ),
     layout.Bsp(
         active_bg = 'b00000',
         margin = 8,
@@ -154,15 +178,10 @@ layouts = [
         font = 'monospace',
         padding_left = 0,
     ),
-    # layout.MonadWide(
-    #   fontsize = 10,
-    #   margin = 8,
-    #     name = 'Xmonad Wide'
-    # ),
     # layout.Floating(border_normal='C74045',
         # single_border_width = 0,
     # ),
-    # layout.RatioTile(),
+    layout.RatioTile(),
 ]
 
 screens = []
@@ -193,8 +212,14 @@ floating_layout = layout.Floating(
     Match(wm_class='yad'),  # gitk
     Match(wm_class='executor-vim'),  # gitk
     Match(wm_class='chtsh'),  # gitk
+    Match(wm_class='notes'),  # gitk
     Match(wm_class='chwall'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(wm_class='scrcpy'),  # GPG key password entry
+    Match(wm_class='Godot'),  # Godot window floating
+    Match(wm_class='RayTracing'),  # Any Window with RayTracing as title
+    Match(wm_class="GLFW-Application"),  # Any Window with RayTracing as title
+    Match(wm_class="python3.10"),  # Any Window with RayTracing as title
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
 ])

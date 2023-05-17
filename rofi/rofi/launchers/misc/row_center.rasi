@@ -14,8 +14,6 @@ configuration {
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -71,7 +69,7 @@ entry {
     expand:                         true;
     horizontal-align:               0;
     placeholder:                    "Search Applications";
-    padding:                        -0.25% 0% 0% 0%;
+    padding:                        -0.10% 0% 0% 0%;
     blink:                          true;
 }
 
@@ -89,7 +87,7 @@ inputbar {
 
 listview {
     background-color:               @background-alt;
-    columns:                        10;
+    columns:                        12;
     lines:	                        2;
     spacing:                        0%;
     cycle:                          false;
@@ -116,11 +114,17 @@ element {
 }
 
 element-icon {
-    size:                           64px;
+    background-color: 				inherit;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           80px;
     border:                         0px;
 }
 
 element-text {
+    background-color: 				inherit;
+    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

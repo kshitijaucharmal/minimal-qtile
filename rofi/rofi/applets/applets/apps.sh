@@ -29,8 +29,8 @@ options="$terminal\n$files\n$editor\n$browser\n$music\n$settings"
 chosen="$(echo -e "$options" | $rofi_command -p "Most Used" -dmenu -selected-row 0)"
 case $chosen in
     $terminal)
-		if [[ -f /usr/bin/alacritty ]]; then
-			alacritty &
+		if [[ -f /usr/bin/termite ]]; then
+			termite &
 		elif [[ -f /usr/bin/urxvt ]]; then
 			urxvt &
 		elif [[ -f /usr/bin/kitty ]]; then
@@ -46,8 +46,8 @@ case $chosen in
 		fi
         ;;
     $files)
-		if [[ -f /usr/bin/nautilus ]]; then
-			nautilus &
+		if [[ -f /usr/bin/thunar ]]; then
+			thunar &
 		elif [[ -f /usr/bin/pcmanfm ]]; then
 			pcmanfm &
 		else
@@ -55,8 +55,8 @@ case $chosen in
 		fi
         ;;
     $editor)
-		if [[ -f /usr/bin/vim ]]; then
-			alacritty -e vim &
+		if [[ -f /usr/bin/geany ]]; then
+			geany &
 		elif [[ -f /usr/bin/leafpad ]]; then
 			leafpad &
 		elif [[ -f /usr/bin/mousepad ]]; then
@@ -72,22 +72,22 @@ case $chosen in
 			firefox &
 		elif [[ -f /usr/bin/chromium ]]; then
 			chromium &
-		elif [[ -f /usr/bin/brave ]]; then
-			brave &
+		elif [[ -f /usr/bin/midori ]]; then
+			midori &
 		else
 			msg "No suitable web browser found!"
 		fi
         ;;
     $music)
-		if [[ -f /usr/bin/vlc ]]; then
-			vlc &
+		if [[ -f /usr/bin/lxmusic ]]; then
+			lxmusic &
 		else
 			msg "No suitable music player found!"
 		fi
         ;;
     $settings)
-		if [[ -f /usr/bin/gnome-control-center ]]; then
-			gnome-control-center &
+		if [[ -f /usr/bin/xfce4-settings-manager ]]; then
+			xfce4-settings-manager &
 		else
 			msg "No suitable settings manager found!"
 		fi

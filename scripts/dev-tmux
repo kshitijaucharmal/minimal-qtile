@@ -1,4 +1,0 @@
-#!/bin/sh
-tmux neww 'zsh'
-tmux neww 'nvim'
-tmux neww 'zsh'

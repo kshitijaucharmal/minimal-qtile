@@ -13,8 +13,6 @@ configuration {
 	icon-theme: 					"Papirus";
     drun-display-format:            "{name}";
     disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -25,7 +23,7 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  0px;
-    height:                         46%;
+    height:                         42%;
     width:                          100%;
     location:                       north;
     x-offset:                       0;
@@ -44,7 +42,7 @@ textbox-prompt-colon {
 	str: 							"System |";
 	background-color: 				@background-alt;
 	text-color: 					@foreground;
-    padding:                        1% 0.5% 1% 5%;
+    padding:                        1% 0.5% 1% 7%;
 }
 
 inputbar {
@@ -55,7 +53,7 @@ inputbar {
     border:                  		0% 0% 0.2% 0%;
     border-radius:                  0% 0% 0% 0%;
     border-color:                  	@border;
-    margin:                         0% 27% 0% 18%;
+    margin:                         0% 33.25% 0% 20%;
     padding:                        0.5%;
     position:                       center;
 }
@@ -73,7 +71,7 @@ mainbox {
     background-color:               @background;
     children:                       [ listview, inputbar ];
     spacing:                        0%;
-    padding:                        5% 0% 5% 9%;
+    padding:                        5% 0% 5% 13.25%;
 }
 
 element {
@@ -84,11 +82,13 @@ element {
 }
 
 element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
 	font:							"feather 64";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         6.5% 4% 16.5% 4%;
+    margin:                         6.5% 4% 6.5% 4%;
 }
 
 element normal.urgent,

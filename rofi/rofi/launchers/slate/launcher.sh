@@ -11,7 +11,7 @@
 # slate_full     slate_center     slate_left
 # slate_right    slate_top        slate_bottom
 
-theme="slate_top"
+theme="slate_full"
 
 dir="$HOME/.config/rofi/launchers/slate"
 styles=($(ls -p --hide="colors.rasi" $dir/styles))

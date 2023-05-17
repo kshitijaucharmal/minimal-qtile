@@ -1,2 +1,2 @@
-@theme "~/.config/rofi/gruvbox-dark-hard.rasi"
+/*@theme "~/.config/rofi/gruvbox-dark-hard.rasi"*/
 @import "~/.cache/wal/colors-rofi-dark"

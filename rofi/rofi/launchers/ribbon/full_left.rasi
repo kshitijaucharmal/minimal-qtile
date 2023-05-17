@@ -14,8 +14,6 @@ configuration {
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
-    fullscreen:                     true;
-	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -28,6 +26,8 @@ window {
 	border:							0% 0% 0% 1.5%;
 	border-color:					@border;
     border-radius:                  0% 0% 0% 0%;
+	width:							100%;
+	height:							100%;
 }
 
 prompt {
@@ -78,7 +78,7 @@ mainbox {
 	border-color:					@border-alt;
     children:                       [ inputbar, listview ];
     spacing:                       	2%;
-    padding:                        20% 10% 10% 10%;
+    padding:                        15% 10% 10% 10%;
 }
 
 element {
@@ -90,11 +90,17 @@ element {
 }
 
 element-icon {
-    size:                           49px;
+    background-color: 				#00000000;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           64px;
     border:                         0px;
 }
 
 element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

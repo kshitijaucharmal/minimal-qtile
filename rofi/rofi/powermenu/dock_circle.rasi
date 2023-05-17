@@ -13,8 +13,6 @@ configuration {
 	icon-theme: 					"Papirus";
     drun-display-format:            "{name}";
     disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
 	sidebar-mode: 					false;
 }
 
@@ -25,7 +23,7 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  0px;
-    height:                         46%;
+    height:                         42%;
     width:                          100%;
     location:                       south;
     x-offset:                       0;
@@ -55,7 +53,7 @@ inputbar {
     border:                  		0% 0.1% 0.5% 0%;
     border-radius:                  100%;
     border-color:                  	@border;
-    margin:                         0% 49% 0% 0%;
+    margin:                         0% 59.3% 0% 0%;
     padding:                        0.5%;
     position:                       center;
 }
@@ -73,7 +71,7 @@ mainbox {
     background-color:               @background;
     children:                       [ inputbar, listview ];
     spacing:                        5%;
-    padding:                        5% 0% 0% 9%;
+    padding:                        5% 0% 0% 13.25%;
 }
 
 element {
@@ -84,11 +82,13 @@ element {
 }
 
 element-text {
+    background-color: 				#00000000;
+    text-color:       				inherit;
 	font:							"feather 64";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    margin:                         6.5% 4% 16.5% 4%;
+    margin:                         6.5% 4% 6.5% 4%;
 }
 
 element normal.urgent,

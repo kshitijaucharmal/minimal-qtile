@@ -1,2 +1,6 @@
-/*@theme "~/.config/rofi/gruvbox-dark-hard.rasi"*/
-@import "~/.cache/wal/colors-rofi-dark"
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+}
