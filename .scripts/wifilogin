@@ -1,0 +1,20 @@
+#!/bin/bash
+read -p "Enter Username: " u
+read -p "Enter Password: " -s p
+
+user="$u%40pict"
+#echo "$p" | openssl sha1
+p=`echo "$p" | sed 's/@/%40/'`
+
+echo "Attempting login..."
+curl -sL 'https://uniboxlogin.wifi-soft.com/onboardPortalEngine/login.php' \
+    -d 'action=Login'  \
+    -d "username=$user"  \
+    -d "password=$p"  \
+    -d "passwd=$p"  \
+    -d 'controllerProfileId=3'  \
+    -d 'realm=pict'  \
+    -d 'sid=rk0b8grqe2p9p9ro67bid8tuc6'  \
+    -d "mobileno=$u"  \
+    -d 'button=Login' \
+echo "Done."
